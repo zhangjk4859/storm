@@ -105,16 +105,21 @@
         if (@available(iOS 11.0, *)) {
             _webview.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }
+        _webview.scrollView.backgroundColor = [UIColor whiteColor];
     }
     return _webview;
 }
 
-static NSString *kCookieStoreKey = @"cookies";
+
 #pragma mark view lifes ++++++++++++++++++++++++++++++++++++
 - (void)viewDidLoad {
     [super viewDidLoad];
     //https://www.jb51.net/article/111709.htm  参考
-    [self loadCookies];
+    /***
+     加载cookie在appdelegate里面
+     did finish launching 里面加载保存的cookie
+     will terminate 保存当前的cookie
+     */
     [self setupSubviews];
     [self.webview loadRequest:self.request];
 
@@ -125,10 +130,18 @@ static NSString *kCookieStoreKey = @"cookies";
 -(void)setupSubviews{
     [self.view addSubview:self.webview];
     [self.webview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.left.bottom.right.equalTo(self.view);
+
+//       make.top.equalTo(self.view).offset(self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height);
+        
+        make.top.equalTo(self.view);
     }];
     [self.navigationController.navigationBar addSubview:self.webViewProgressView];
     self.navigationItem.rightBarButtonItems = @[self.refreshBarButtonItem];
+    /***
+     一旦设置为不透明 默认的顶部就成了64，透明的情况顶部为0，透明在顶！d=====(￣▽￣*)b，不透明在导航栏下面，道理简单，透明了可以往上挪，看到东西
+     */
+    self.navigationController.navigationBar.translucent = NO;
     [self reachability];
 }
 
@@ -191,32 +204,6 @@ static NSString *kCookieStoreKey = @"cookies";
     [self.webview goBack];
 }
 
--(void)loadCookies{
-    NSDictionary *dic = [[NSUserDefaults standardUserDefaults] objectForKey:kCookieStoreKey];
-    if (dic) {
-        NSHTTPCookie *cookieuser = [NSHTTPCookie cookieWithProperties:dic];
-        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookieuser];
-    }
-}
-
-
--(void)refrehsCookies{
-    NSArray *nCookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
-    for (NSHTTPCookie *cookie in nCookies){
-        if ([cookie isKindOfClass:[NSHTTPCookie class]]){
-            if ([cookie.name isEqualToString:@"PHPSESSID"]) {
-                [self.mdic removeAllObjects];
-                [self.mdic setObject:cookie.name   forKey:NSHTTPCookieName  ];
-                [self.mdic setObject:cookie.value  forKey:NSHTTPCookieValue ];
-                [self.mdic setObject:cookie.domain forKey:NSHTTPCookieDomain];
-                [self.mdic setObject:cookie.path   forKey:NSHTTPCookiePath  ];
-                [[NSUserDefaults standardUserDefaults] setObject:[NSDictionary dictionaryWithDictionary:self.mdic] forKey:kCookieStoreKey];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                break;
-            }
-        }
-    }
-}
 
 
 #pragma mark delegates ############################################
@@ -242,7 +229,6 @@ static NSString *kCookieStoreKey = @"cookies";
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
 
     NSLog(@"webViewDidFinishLoad");
-    [self refrehsCookies];
     
     if ([webView canGoBack]) {
         self.navigationItem.leftBarButtonItems = @[self.backBarButtonItem];
@@ -321,6 +307,8 @@ static NSString *kCookieStoreKey = @"cookies";
 - (void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress{
     [self.webViewProgressView setProgress:progress animated:YES];
     self.title = [self.webview stringByEvaluatingJavaScriptFromString:@"document.title"];
+    //改变网页背景颜色 让浏览器执行内部的js代码
+//    [self.webview stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.background='#2E2E2E'"];
 }
 
 

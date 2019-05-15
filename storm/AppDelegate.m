@@ -18,6 +18,8 @@
 
 @end
 
+static NSString *kCookieStoreKey = @"cookies";
+
 @implementation AppDelegate
 
 static NSString *kStoreKey = @"StoreKey";
@@ -27,10 +29,9 @@ static NSString *kStoreKey = @"StoreKey";
     
     
 
+    [self loadCookies];
     
     BOOL userHasOnboard = [[NSUserDefaults standardUserDefaults] boolForKey:kStoreKey];
-    
-    
     if (userHasOnboard) {
         [self normalStartup];
     }else{
@@ -73,6 +74,35 @@ static NSString *kStoreKey = @"StoreKey";
     self.window.rootViewController = nav;
 }
 
+-(void)loadCookies{
+    NSDictionary *dic = [[NSUserDefaults standardUserDefaults] objectForKey:kCookieStoreKey];
+    if (dic) {
+        NSHTTPCookie *cookieuser = [NSHTTPCookie cookieWithProperties:dic];
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookieuser];
+    }
+}
+
+
+-(void)saveCookies{
+    NSMutableDictionary *mdic = [NSMutableDictionary dictionary];
+    NSArray *nCookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
+    for (NSHTTPCookie *cookie in nCookies){
+        if ([cookie isKindOfClass:[NSHTTPCookie class]]){
+            if ([cookie.name isEqualToString:@"PHPSESSID"]) {
+                [mdic removeAllObjects];
+                [mdic setObject:cookie.name   forKey:NSHTTPCookieName  ];
+                [mdic setObject:cookie.value  forKey:NSHTTPCookieValue ];
+                [mdic setObject:cookie.domain forKey:NSHTTPCookieDomain];
+                [mdic setObject:cookie.path   forKey:NSHTTPCookiePath  ];
+                [[NSUserDefaults standardUserDefaults] setObject:[NSDictionary dictionaryWithDictionary:mdic] forKey:kCookieStoreKey];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                break;
+            }
+        }
+    }
+}
+
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -99,6 +129,7 @@ static NSString *kStoreKey = @"StoreKey";
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self saveCookies];
 }
 
 
