@@ -37,6 +37,7 @@
 @property(nonatomic,strong)NSURLRequest *request;
 @property(nonatomic,strong)UIBarButtonItem *refreshBarButtonItem;
 @property(nonatomic,strong)UIBarButtonItem *backBarButtonItem;
+@property(nonatomic,strong)UIActivityIndicatorView *activity;
 @end
 
 @implementation MainViewController
@@ -45,6 +46,15 @@
 
 #pragma mark getters && setters ++++++++++++++++++++++++++++++++++++
 
+
+
+-(UIActivityIndicatorView *)activity{
+    if (!_activity) {
+        _activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        _activity.center = self.view.center;
+    }
+    return _activity;
+}
 
 
 - (UIBarButtonItem *)refreshBarButtonItem {
@@ -122,7 +132,7 @@
      */
     [self setupSubviews];
     [self.webview loadRequest:self.request];
-
+    [self.activity startAnimating];
 }
 
 
@@ -142,6 +152,8 @@
      一旦设置为不透明 默认的顶部就成了64，透明的情况顶部为0，透明在顶！d=====(￣▽￣*)b，不透明在导航栏下面，道理简单，透明了可以往上挪，看到东西
      */
     self.navigationController.navigationBar.translucent = NO;
+    self.navigationItem.title = @"加载中...";
+    [self.view addSubview:self.activity];
     [self reachability];
 }
 
@@ -213,10 +225,10 @@
     /***
      如果当前显示的是错误页面 点击刷新的时候去请求主页
      */
-    if ([request.URL.absoluteString isEqualToString:@"ax_network_error"]) {
-        [self.webview loadRequest:self.request];
-        return NO;
-    }
+//    if ([request.URL.absoluteString isEqualToString:@"ax_network_error"]) {
+//        [self.webview loadRequest:self.request];
+//        return NO;
+//    }
     
     
     return YES;
@@ -227,6 +239,7 @@
     
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self.activity stopAnimating];
 
     NSLog(@"webViewDidFinishLoad");
     
@@ -235,8 +248,10 @@
     }else{
         self.navigationItem.leftBarButtonItems = @[];
     }
+    self.navigationItem.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [self.activity stopAnimating];
     NSLog(@"didFailLoadWithError");
     if (error.code == NSURLErrorCancelled) {
         [webView reload];
@@ -306,7 +321,7 @@
 #pragma mark delegates NJKWebViewProgressDelegate ############################################
 - (void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress{
     [self.webViewProgressView setProgress:progress animated:YES];
-    self.title = [self.webview stringByEvaluatingJavaScriptFromString:@"document.title"];
+    
     //改变网页背景颜色 让浏览器执行内部的js代码
 //    [self.webview stringByEvaluatingJavaScriptFromString:@"document.getElementsByTagName('body')[0].style.background='#2E2E2E'"];
 }
