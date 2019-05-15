@@ -132,7 +132,7 @@ static void *originalScrollEnabledKey = &originalScrollEnabledKey;
         {
             NSString *path = [[NSBundle mainBundle] pathForResource:@"无商品" ofType:@"png"];
             imageView.image = [UIImage imageWithContentsOfFile:path];
-            descLabel.text = @"一个商品都没有";
+            descLabel.text = @"加载中";
         }
             break;
             

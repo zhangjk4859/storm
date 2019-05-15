@@ -102,6 +102,9 @@
     if (!_webview) {
         _webview = [[UIWebView alloc] initWithFrame:CGRectZero];
         _webview.delegate = self.progressProxy;
+        if (@available(iOS 11.0, *)) {
+            _webview.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
     }
     return _webview;
 }
@@ -129,6 +132,11 @@ static NSString *kCookieStoreKey = @"cookies";
     [self reachability];
 }
 
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+ 
+}
 
 
 #pragma mark actions++++++++++++++++++++++++++++++++++++
@@ -229,8 +237,10 @@ static NSString *kCookieStoreKey = @"cookies";
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     NSLog(@"webViewDidStartLoad");
+    
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+
     NSLog(@"webViewDidFinishLoad");
     [self refrehsCookies];
     

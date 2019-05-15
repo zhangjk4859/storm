@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0A9BB85F2289845F00366646 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BB85E2289845F00366646 /* AppDelegate.m */; };
 		0A9BB8672289846200366646 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A9BB8662289846200366646 /* Assets.xcassets */; };
-		0A9BB86A2289846200366646 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A9BB8682289846200366646 /* LaunchScreen.storyboard */; };
 		0A9BB86D2289846200366646 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BB86C2289846200366646 /* main.m */; };
 		0A9BB90D22898A3D00366646 /* Aspects.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BB8DA22898A3D00366646 /* Aspects.m */; };
 		0A9BB90E22898A3D00366646 /* AXBreachedAnnulusIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BB8DE22898A3D00366646 /* AXBreachedAnnulusIndicatorView.m */; };
@@ -36,6 +35,7 @@
 		0A9BB97F228A69C100366646 /* AXWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BB97B228A69C100366646 /* AXWebViewController.m */; };
 		0A9BB98B228BB12B00366646 /* NSURLProtocol+WKWebVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BB98A228BB12B00366646 /* NSURLProtocol+WKWebVIew.m */; };
 		0A9BB98E228BB6FB00366646 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BB98D228BB6FB00366646 /* MainViewController.m */; };
+		0A9BB991228C5E1300366646 /* THNewFeatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BB98F228C5E1300366646 /* THNewFeatureController.m */; };
 		4BD2C26125CD9CA1EF8EEB7C /* Pods_storm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E059AFD690D26611CB3CA78 /* Pods_storm.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +44,6 @@
 		0A9BB85D2289845F00366646 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0A9BB85E2289845F00366646 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		0A9BB8662289846200366646 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		0A9BB8692289846200366646 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A9BB86B2289846200366646 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A9BB86C2289846200366646 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0A9BB8D822898A3D00366646 /* Aspects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aspects.h; sourceTree = "<group>"; };
@@ -92,6 +91,8 @@
 		0A9BB98A228BB12B00366646 /* NSURLProtocol+WKWebVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLProtocol+WKWebVIew.m"; sourceTree = "<group>"; };
 		0A9BB98C228BB6FB00366646 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		0A9BB98D228BB6FB00366646 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		0A9BB98F228C5E1300366646 /* THNewFeatureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THNewFeatureController.m; sourceTree = "<group>"; };
+		0A9BB990228C5E1300366646 /* THNewFeatureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THNewFeatureController.h; sourceTree = "<group>"; };
 		9E059AFD690D26611CB3CA78 /* Pods_storm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_storm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BECA65A831922A6C9D79EFF8 /* Pods-storm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-storm.release.xcconfig"; path = "Target Support Files/Pods-storm/Pods-storm.release.xcconfig"; sourceTree = "<group>"; };
 		D90255016646092464EE9FA0 /* Pods-storm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-storm.debug.xcconfig"; path = "Target Support Files/Pods-storm/Pods-storm.debug.xcconfig"; sourceTree = "<group>"; };
@@ -134,8 +135,9 @@
 				0A9BB85E2289845F00366646 /* AppDelegate.m */,
 				0A9BB98C228BB6FB00366646 /* MainViewController.h */,
 				0A9BB98D228BB6FB00366646 /* MainViewController.m */,
+				0A9BB990228C5E1300366646 /* THNewFeatureController.h */,
+				0A9BB98F228C5E1300366646 /* THNewFeatureController.m */,
 				0A9BB8662289846200366646 /* Assets.xcassets */,
-				0A9BB8682289846200366646 /* LaunchScreen.storyboard */,
 				0A9BB86B2289846200366646 /* Info.plist */,
 				0A9BB86C2289846200366646 /* main.m */,
 				0A9BB989228BB12B00366646 /* NSURLProtocol+WKWebVIew.h */,
@@ -375,7 +377,6 @@
 			files = (
 				0A9BB97E228A69C100366646 /* AXWebViewController.bundle in Resources */,
 				0A9BB90F22898A3D00366646 /* AXIndicatorView.bundle in Resources */,
-				0A9BB86A2289846200366646 /* LaunchScreen.storyboard in Resources */,
 				0A9BB9542289A22600366646 /* 沙发.png in Resources */,
 				0A9BB9522289A22600366646 /* 无商品.png in Resources */,
 				0A9BB8672289846200366646 /* Assets.xcassets in Resources */,
@@ -453,6 +454,7 @@
 				0A9BB90E22898A3D00366646 /* AXBreachedAnnulusIndicatorView.m in Sources */,
 				0A9BB97F228A69C100366646 /* AXWebViewController.m in Sources */,
 				0A9BB98E228BB6FB00366646 /* MainViewController.m in Sources */,
+				0A9BB991228C5E1300366646 /* THNewFeatureController.m in Sources */,
 				0A9BB98B228BB12B00366646 /* NSURLProtocol+WKWebVIew.m in Sources */,
 				0A9BB86D2289846200366646 /* main.m in Sources */,
 				0A9BB91E22898A3D00366646 /* NJKWebViewProgress.m in Sources */,
@@ -473,17 +475,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		0A9BB8682289846200366646 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0A9BB8692289846200366646 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		0A9BB86E2289846200366646 /* Debug */ = {
@@ -603,6 +594,7 @@
 			baseConfigurationReference = D90255016646092464EE9FA0 /* Pods-storm.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KSQ99GBANE;
 				INFOPLIST_FILE = storm/Info.plist;
@@ -622,6 +614,7 @@
 			baseConfigurationReference = BECA65A831922A6C9D79EFF8 /* Pods-storm.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KSQ99GBANE;
 				INFOPLIST_FILE = storm/Info.plist;

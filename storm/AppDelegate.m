@@ -12,6 +12,7 @@
 #import "MainViewController.h"
 #import "OnboardingViewController.h"
 #import "OnboardingContentViewController.h"
+#import "THNewFeatureController.h"
 
 @interface AppDelegate ()
 
@@ -29,14 +30,13 @@ static NSString *kStoreKey = @"StoreKey";
     
     BOOL userHasOnboard = [[NSUserDefaults standardUserDefaults] boolForKey:kStoreKey];
     
-   [self onboardStartup];
     
-//    if (userHasOnboard) {
-//        [self normalStartup];
-//    }else{
-//        [self onboardStartup];
-//    }
-//
+    if (userHasOnboard) {
+        [self normalStartup];
+    }else{
+        [self onboardStartup];
+    }
+
     
     
     
@@ -49,38 +49,12 @@ static NSString *kStoreKey = @"StoreKey";
 -(void)onboardStartup{
    
     
-    OnboardingContentViewController *firstPage = [OnboardingContentViewController contentWithTitle:@"What A Beautiful Photo" body:@"This city background image is so beautiful." image:[UIImage imageNamed:@"blue"] buttonText:@"Enable Location Services" action:^{
-        [[[UIAlertView alloc] initWithTitle:nil message:@"Here you can prompt users for various application permissions, providing them useful information about why you'd like those permissions to enhance their experience, increasing your chances they will grant those permissions." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-    }];
-    
-    OnboardingContentViewController *secondPage = [OnboardingContentViewController contentWithTitle:@"I'm so sorry" body:@"I can't get over the nice blurry background photo." image:[UIImage imageNamed:@"red"] buttonText:@"Connect With Facebook" action:^{
-        [[[UIAlertView alloc] initWithTitle:nil message:@"Prompt users to do other cool things on startup. As you can see, hitting the action button on the prior page brought you automatically to the next page. Cool, huh?" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-    }];
-    secondPage.movesToNextViewController = YES;
-    secondPage.viewDidAppearBlock = ^{
-//        [[[UIAlertView alloc] initWithTitle:@"Welcome!" message:@"You've arrived on the second page, and this alert was displayed from within the page's viewDidAppearBlock." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
-    };
-    
-    OnboardingContentViewController *thirdPage = [OnboardingContentViewController contentWithTitle:@"Seriously Though" body:@"Kudos to the photographer." image:[UIImage imageNamed:@"yellow"] buttonText:@"Get Started" action:^{
-
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kStoreKey];
-        [self normalStartup];
-    }];
-    
-    OnboardingViewController *onboardingVC = [OnboardingViewController onboardWithBackgroundImage:[UIImage imageNamed:@"street"] contents:@[firstPage, secondPage, thirdPage]];
-    onboardingVC.shouldFadeTransitions = YES;
-    onboardingVC.fadePageControlOnLastPage = YES;
-    onboardingVC.fadeSkipButtonOnLastPage = YES;
-    
-    // If you want to allow skipping the onboarding process, enable skipping and set a block to be executed
-    // when the user hits the skip button.
-    onboardingVC.allowSkipping = YES;
-    onboardingVC.skipHandler = ^{
+    THNewFeatureController *vc = [THNewFeatureController new];
+    vc.operation = ^{
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kStoreKey];
         [self normalStartup];
     };
-    
-    self.window.rootViewController = onboardingVC;
+    self.window.rootViewController = vc;
 }
 
 
