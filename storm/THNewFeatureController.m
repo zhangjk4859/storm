@@ -119,11 +119,13 @@ static NSString *kContent = @"content";
             
             [containerView addSubview:clickBtn];
             [clickBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.size.mas_equalTo(CGSizeMake(190.f, 44.f));
+//                make.size.mas_equalTo(CGSizeMake(190.f, 44.f));
+                make.width.equalTo(containerView).multipliedBy(0.506);
+                 make.height.equalTo(containerView.mas_width).multipliedBy(0.117);
                 make.centerY.equalTo(containerView).multipliedBy(1.8);
                 make.centerX.equalTo(containerView);
             }];
-            clickBtn.layer.cornerRadius = 22;
+            clickBtn.layer.cornerRadius = screen_width * 0.117 * 0.5;
         }
         
 

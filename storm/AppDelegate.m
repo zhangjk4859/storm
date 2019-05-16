@@ -13,6 +13,7 @@
 #import "OnboardingViewController.h"
 #import "OnboardingContentViewController.h"
 #import "THNewFeatureController.h"
+#import "DetectViewController.h"
 
 @interface AppDelegate ()
 
@@ -27,7 +28,7 @@ static NSString *kStoreKey = @"StoreKey";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kStoreKey];
 
     [self loadCookies];
     
@@ -69,6 +70,8 @@ static NSString *kStoreKey = @"StoreKey";
     //        webVC.webView.allowsLinkPreview = YES;
     //    }
     MainViewController *vc = [[MainViewController alloc] init];
+//    DetectViewController *vc1 = [[DetectViewController alloc] init];
+    
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     //    [self.navigationController pushViewController:webVC animated:YES];
     self.window.rootViewController = nav;

@@ -36,6 +36,7 @@
 		0A9BB98B228BB12B00366646 /* NSURLProtocol+WKWebVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BB98A228BB12B00366646 /* NSURLProtocol+WKWebVIew.m */; };
 		0A9BB98E228BB6FB00366646 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BB98D228BB6FB00366646 /* MainViewController.m */; };
 		0A9BB991228C5E1300366646 /* THNewFeatureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BB98F228C5E1300366646 /* THNewFeatureController.m */; };
+		0A9BB994228D011500366646 /* DetectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9BB993228D011500366646 /* DetectViewController.m */; };
 		4BD2C26125CD9CA1EF8EEB7C /* Pods_storm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E059AFD690D26611CB3CA78 /* Pods_storm.framework */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +94,8 @@
 		0A9BB98D228BB6FB00366646 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		0A9BB98F228C5E1300366646 /* THNewFeatureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THNewFeatureController.m; sourceTree = "<group>"; };
 		0A9BB990228C5E1300366646 /* THNewFeatureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THNewFeatureController.h; sourceTree = "<group>"; };
+		0A9BB992228D011500366646 /* DetectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectViewController.h; sourceTree = "<group>"; };
+		0A9BB993228D011500366646 /* DetectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetectViewController.m; sourceTree = "<group>"; };
 		9E059AFD690D26611CB3CA78 /* Pods_storm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_storm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BECA65A831922A6C9D79EFF8 /* Pods-storm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-storm.release.xcconfig"; path = "Target Support Files/Pods-storm/Pods-storm.release.xcconfig"; sourceTree = "<group>"; };
 		D90255016646092464EE9FA0 /* Pods-storm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-storm.debug.xcconfig"; path = "Target Support Files/Pods-storm/Pods-storm.debug.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +140,8 @@
 				0A9BB98D228BB6FB00366646 /* MainViewController.m */,
 				0A9BB990228C5E1300366646 /* THNewFeatureController.h */,
 				0A9BB98F228C5E1300366646 /* THNewFeatureController.m */,
+				0A9BB992228D011500366646 /* DetectViewController.h */,
+				0A9BB993228D011500366646 /* DetectViewController.m */,
 				0A9BB8662289846200366646 /* Assets.xcassets */,
 				0A9BB86B2289846200366646 /* Info.plist */,
 				0A9BB86C2289846200366646 /* main.m */,
@@ -462,6 +467,7 @@
 				0A9BB85F2289845F00366646 /* AppDelegate.m in Sources */,
 				0A9BB9512289A22600366646 /* UIView+PlaceholderView.m in Sources */,
 				0A9BB94622898B1F00366646 /* AXPracticalHUDContentView.m in Sources */,
+				0A9BB994228D011500366646 /* DetectViewController.m in Sources */,
 				0A9BB93122898B1100366646 /* AXPopNavigationController.m in Sources */,
 				0A9BB94A22898B1F00366646 /* AXPracticalHUD.m in Sources */,
 				0A9BB91F22898A3D00366646 /* NJKWebViewProgressView.m in Sources */,
