@@ -601,7 +601,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = KSQ99GBANE;
 				INFOPLIST_FILE = storm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -611,6 +611,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.iosfactory.skeleton.storm21;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = storm_dev;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -621,7 +622,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = KSQ99GBANE;
 				INFOPLIST_FILE = storm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -631,6 +632,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.iosfactory.skeleton.storm21;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = storm_dev;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
