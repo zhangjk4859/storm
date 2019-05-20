@@ -28,11 +28,11 @@ static NSString *kStoreKey = @"StoreKey";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kStoreKey];
-
+    //启动的时候加载cookie
     [self loadCookies];
     
     BOOL userHasOnboard = [[NSUserDefaults standardUserDefaults] boolForKey:kStoreKey];
+
     if (userHasOnboard) {
         [self normalStartup];
     }else{

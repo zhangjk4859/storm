@@ -73,6 +73,7 @@
 -(NSURLRequest *)request{
     if (!_request) {
         NSString *url = @"http://taihaojie.cn/index.php/index/loanuser/userinfo.html";
+//        url = @"http://www.youtube.com";
         _request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     }
     return _request;
@@ -223,20 +224,20 @@
     
     // URL actions
     /***
-     如果当前显示的是错误页面 点击刷新的时候去请求主页
+         点击错误刷新 还是有问题 继续处理
      */
-//    if ([request.URL.absoluteString isEqualToString:@"ax_network_error"]) {
-//        [self.webview loadRequest:self.request];
-//        return NO;
-//    }
-    
+    NSLog(@"%@",request.URL.absoluteString);
+    if ([request.URL.absoluteString hasSuffix:@"ax_network_error"]) {
+        [self.webview loadRequest:self.request];
+        return NO;
+    }
     
     return YES;
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     NSLog(@"webViewDidStartLoad");
-    
+//    [self.activity startAnimating];
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [self.activity stopAnimating];
@@ -251,14 +252,15 @@
     self.navigationItem.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    [self.activity stopAnimating];
+    
     NSLog(@"didFailLoadWithError");
-    if (error.code == NSURLErrorCancelled) {
-        [webView reload];
+    if (error.code == NSURLErrorCancelled) {//被屏蔽的网站收到的错误
+//        [webView reload];
+        [self.activity stopAnimating];
         return;
     }
     [self didFailLoadWithError:error];
-    
+    [self.activity stopAnimating];
 }
 
 - (void)didFailLoadWithError:(NSError *)error{
